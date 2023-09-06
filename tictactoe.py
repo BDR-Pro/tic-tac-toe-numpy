@@ -38,30 +38,67 @@ def player1():
         print("Player 1, enter a row and column")
         row = int(input("Row: "))
         col = int(input("Column: "))
-        if grid[row][col] != "Y":
-            print("That spot is already taken!")    
-        else:
-            grid[row][col] = "X"
-            break
+        try:
+            if grid[row][col] != "Y":
+                print("That spot is already taken!")    
+            else:
+                grid[row][col] = "X"
+                break
+        except IndexError:
+            print("Please enter a valid input")
 
-def player2():  
+def ai():
     while True:
-        print("Player 2, enter a row and column")
-        row = int(input("Row: "))
-        col = int(input("Column: "))
+        row = np.random.randint(3)
+        col = np.random.randint(3)
         if grid[row][col] != "Y":
             print("That spot is already taken!")    
         else:
             grid[row][col] = "O"
             break
 
+
+def player2():  
+    while True:
+        try:
+            print("Player 2, enter a row and column")
+            row = int(input("Row: "))
+            col = int(input("Column: "))
+            if grid[row][col] != "Y":
+                print("That spot is already taken!")    
+            else:
+                grid[row][col] = "O"
+                break
+        except IndexError:
+            print("Please enter a valid input")
+
+
+def playerorai():
+    while True:
+        player = input("Would you like to play against a player or an AI? (p/a)")
+        if player == "p":
+            return  True
+        elif player == "a":
+            ai()
+            return False
+        else:
+            print("Please enter a valid input")
+
+def whotoplay(ans):
+    if ans:
+        player2()
+    else:
+        ai()
+
+
+ans=playerorai()
 while(finshed() is False):
     print_grid()
     player1()
     if(finshed()):break
     if(tie()):break
     print_grid()
-    player2()
+    whotoplay(ans)
     if(tie()):break
     print_grid()
 
