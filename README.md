@@ -1,1 +1,1 @@
-# tic-tac-toe-numpy
+# tictactoe in numpy to put your numpy skills in the test
