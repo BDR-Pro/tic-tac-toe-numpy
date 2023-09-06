@@ -52,7 +52,7 @@ def ai():
         row = np.random.randint(3)
         col = np.random.randint(3)
         if grid[row][col] != "Y":
-            print("That spot is already taken!")    
+            continue
         else:
             grid[row][col] = "O"
             break
@@ -79,7 +79,8 @@ def playerorai():
         if player == "p":
             return  True
         elif player == "a":
-            ai()
+            if(input("Who plays first? (1/a)")=="a"):
+                ai()
             return False
         else:
             print("Please enter a valid input")
